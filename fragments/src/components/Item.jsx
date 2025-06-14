@@ -1,8 +1,29 @@
-import styles from './Item.module.css'
+import styles from "./Item.module.css";
 
-function Item(props){
+const Item = ({ foodItem }) => {
 
-  return <li   className={`${styles['kg-items']} list-group-item`}>{props.foodItem}</li>
-}
+  const handleBuyButton = (foodItem) =>{
 
-export default Item ; 
+    console.log(`${foodItem} is getting bought`)
+
+  }
+
+
+  return (
+    <li
+      className={`${styles["kg-item"]} list-group-item `}
+    >
+      <span className={styles["kg-span"]}>{foodItem}</span>
+      <button
+        className={`${styles.button} btn btn-info`}
+
+        onClick={() =>  handleBuyButton(foodItem)}
+       
+      >
+        Buy
+      </button>
+    </li>
+  );
+};
+
+export default Item;
