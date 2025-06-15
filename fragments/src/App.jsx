@@ -9,16 +9,28 @@ import ErrorMessage  from './components/ErrorMessage';
 
 import Container from './components/Container';
 
+import { useState } from 'react';
+
 function App() {
   
 
   let foodItems = ['dal' ,'dosa' , 'rice' , 'vegetables '];
-  // let foodItems = [];
 
-  // if (foodItems.length === 0) {
-  //  return <h2>I am still hungry</h2>
-  // }
- 
+  let textStateArr = useState();
+  let textStateValue = textStateArr[0];
+  let textStateMethod = textStateArr[1];
+  
+  
+
+  let textToShow = 'Food item entered by user' ; 
+
+
+
+   const handleOnChange = (event)=> {
+    console.log(event.target.value);
+
+    textToShow = event.target.value ; 
+   }
   return (
     
     <Container>
@@ -28,11 +40,15 @@ function App() {
     
         <center>
           
-       <h1> Healty Food </h1>
+       <h1 > Healty Food </h1>
+
+       
 
        <ErrorMessage items={foodItems}></ErrorMessage>
 
-       <FoodInput></FoodInput>
+       <FoodInput handleOnChange={handleOnChange}></FoodInput>
+
+       <p>{textToShow}</p>
 
        <FoodItems items={foodItems}> </FoodItems>
        

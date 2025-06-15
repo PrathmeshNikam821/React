@@ -3,7 +3,9 @@ function FoodItems({items}){
   
   return (
      <ul className="list-group">
-          {items.map(item =>  <Item foodItem = {item }/>
+          {items.map(item =>  <Item foodItem = {item } handleBuyButton={()=>{
+            console.log("clicked")
+          }}/>
          )}
          
           
