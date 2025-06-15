@@ -14,47 +14,40 @@ import { useState } from 'react';
 function App() {
   
 
-  let foodItems = ['dal' ,'dosa' , 'rice' , 'vegetables '];
+ let [foodItems, setFoodItems] =  useState(['dal' ,'dosa' , 'rice' ])
 
-  let textStateArr = useState();
-  let textStateValue = textStateArr[0];
-  let textStateMethod = textStateArr[1];
-  
-  
+   const onKeyDown = (event)=> {
 
-  let textToShow = 'Food item entered by user' ; 
+    if(event.key === 'Enter'){
+      let newFoodItem = event.target.value ; 
+      event.target.value = '' ; 
 
+      let newItems = [...foodItems, newFoodItem];
 
+      setFoodItems(newItems) ; 
+      console.log(`Food value entered is ${newFoodItem}`);
 
-   const handleOnChange = (event)=> {
-    console.log(event.target.value);
-
-    textToShow = event.target.value ; 
+    }
+   
    }
+
+
+
+
   return (
     
     <Container>
-
-
-
     
         <center>
           
-       <h1 > Healty Food </h1>
-
-       
+       <h1 > Healty Food </h1>      
 
        <ErrorMessage items={foodItems}></ErrorMessage>
 
-       <FoodInput handleOnChange={handleOnChange}></FoodInput>
-
-       <p>{textToShow}</p>
+       <FoodInput handleKeyDown={onKeyDown}></FoodInput>
 
        <FoodItems items={foodItems}> </FoodItems>
-       
 
-      
-      
         </center>
     </Container>
     
