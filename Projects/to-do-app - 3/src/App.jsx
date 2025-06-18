@@ -40,7 +40,7 @@ function App() {
 
      {todoItems.length === 0 && <WelcomeMessage></WelcomeMessage> }
      
-     <TodoItems todoItems={todoItems} onDeleteClick={handleDeleteItem}></TodoItems>
+     <TodoItems key={todoItems} todoItems={todoItems} onDeleteClick={handleDeleteItem}></TodoItems>
      
 
      
