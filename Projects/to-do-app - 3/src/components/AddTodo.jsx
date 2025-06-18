@@ -1,4 +1,6 @@
 import { useState } from "react";
+import { BiSolidAddToQueue } from "react-icons/bi";
+
 
 function AddTodo({onNewItem}){
 
@@ -17,13 +19,17 @@ function AddTodo({onNewItem}){
    
   }
 
-  const handleAddButtonClicked = () =>{
+  const handleAddButtonClicked = ( event) =>{
+    
+    event.preventDefault();
+
     onNewItem(todoName, dueDate); 
      setDueDate("");
-     setTodoName("");
+      setTodoName("");
   }
 
-  return <div className="row my-row">
+  return <div className="container text-center">
+        <form action=""  onSubmit={handleAddButtonClicked} className=" row my-row">
           <div className="col-4">
             <input type="text" placeholder="Enter to do " value={todoName} onChange={handleNameChange} />
           </div>
@@ -31,9 +37,11 @@ function AddTodo({onNewItem}){
             <input type="date" value={dueDate} onChange={handleDateChange}/>
           </div>
           <div className='col-2'>
-            <button className="btn btn-success my-button" onClick={handleAddButtonClicked
-            }>Add</button>
+            <button className="btn btn-success my-button"
+           
+            > <BiSolidAddToQueue></BiSolidAddToQueue>  Add</button>
           </div>
+        </form>
       </div>
 }
 
