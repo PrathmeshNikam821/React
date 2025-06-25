@@ -11,3 +11,17 @@
 
   min-height: 800px;
 }
+
+.post-card{
+    margin: 20px 50px;
+    min-width: 30rem;
+}
+
+.post-tag{
+  margin:5px;
+}
+
+.reactions{
+  width: 100%;
+  margin: 15px 0 0 0;
+}
