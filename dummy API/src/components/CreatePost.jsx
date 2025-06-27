@@ -18,7 +18,7 @@ const CreatePost = () => {
       const userId = userIdElement.current.value;
       const postTitle = postTitleElement.current.value ; 
       const postBody = postBodyElement.current.value ; 
-      const reactions = reactionsElement.current.value.split(' ');
+      const reactions = reactionsElement.current.value || 0 ; 
       const tags = tagsElement.current.value.split(' ') ;
 
       userIdElement.current.value="";
