@@ -1,5 +1,8 @@
 import { useRef } from "react";
 import { useDispatch } from "react-redux";
+import { } from "../store";
+import { counterActions } from "../store/counter";
+import { privateActions } from "../store/privacy";
 
 const Controls = () => {
   const dispatch = useDispatch();
@@ -7,29 +10,30 @@ const Controls = () => {
   const inputElement = useRef();
 
   const handleIncr = () => {
-    dispatch({ type: "INCREMENT" });
+    dispatch(counterActions.increment());
   };
   const handleDecr = () => {
-    dispatch({ type: "DECREMENT" });
+    dispatch(counterActions.decrement());
   };
 
   const handleAdd=()=>{
-    dispatch(
-      ({type:"ADD" , payload :{
+  
+    dispatch(counterActions.add({
         num :inputElement.current.value,
-      }})
-    )
+      }))
+    inputElement.current.value = "";
   }
 
   const handleSub = () =>{
-    dispatch(({type:"SUB" , payload :{
+   
+    dispatch(counterActions.sub({
       num :inputElement.current.value,
-    }}))
+    }))
     inputElement.current.value = "";
   }
 
   const hadlePrivacyToggle  = () =>{
-      dispatch({type:"PRIVATE"})
+      dispatch(privateActions.toggle())
   }
 
   return (

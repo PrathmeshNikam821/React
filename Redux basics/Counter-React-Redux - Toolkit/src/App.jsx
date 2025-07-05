@@ -9,7 +9,7 @@ import PrivacyMesage from "./components/PrivacyMesage";
 
 function App() {
 
-  const privacy = useSelector(store => store.privacy);
+  const privacy = useSelector(store => store.private);
 
 
   return (
