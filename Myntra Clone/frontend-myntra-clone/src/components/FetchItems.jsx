@@ -3,43 +3,32 @@ import {useDispatch, useSelector} from 'react-redux';
 import { itemsActions } from '../store/itemsSlice';
 import { fetchStatusActions } from '../store/fetchStatusSlice';
 
-function FetchItems() {
 
-  const fetchStatus =   useSelector(store => store.fetchStatus);
-  const dispatch = useDispatch() ; 
+const FetchItems = () => {
+  const fetchStatus = useSelector((store) => store.fetchStatus);
+  const dispatch = useDispatch();
 
-  useEffect(()=>{
-    if (fetchStatus.fetchDone) return ; 
+  useEffect(() => {
+    if (fetchStatus.fetchDone) return;
 
-    const controller =  new AbortController();
-    const signal = controller.signal; 
+    const controller = new AbortController();
+    const signal = controller.signal;
 
-    fetch("http://localhost:8080/items", {signal })
-    .then((res) =>res.json())
-    .then(({ items })=>{
-      dispatch(fetchStatusActions.markFetchDone())
-     dispatch(itemsActions.addInitialItems(items));
-    })
+    dispatch(fetchStatusActions.markFetchingStarted());
+    fetch("http://localhost:8080/items", { signal })
+      .then((res) => res.json())
+      .then(({ items }) => {
+        dispatch(fetchStatusActions.markFetchDone());
+        dispatch(fetchStatusActions.markFetchingFinished());
+        dispatch(itemsActions.addInitialItems(items));
+      });
 
-
-    return()=>{
+    return () => {
       controller.abort();
+    };
+  }, [fetchStatus]);
 
-    } 
-
-    
-    
-
-  },[fetchStatus]);
-
-
-  return <>
-    <div>
-      Fetch Done : {fetchStatus.fetchDone},
-      Currently Fetching ; {fetchStatus.currentlyFetching }
-    </div>
-  
-  </>
-}
+  return <></>;
+};
 
 export default FetchItems;
