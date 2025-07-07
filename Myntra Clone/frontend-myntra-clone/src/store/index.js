@@ -1,0 +1,16 @@
+import { configureStore } from "@reduxjs/toolkit";
+import itemsSlice from "./itemsSlice";
+import fetchStatusSlice from "./fetchStatusSlice";
+
+// const { configureStore } = require("@reduxjs/toolkit");
+
+
+
+const myntraStore = configureStore({
+  reducer :{
+    items : itemsSlice.reducer,
+    fetchStatus : fetchStatusSlice.reducer
+  }
+})
+
+export default myntraStore ; 
